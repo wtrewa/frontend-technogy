@@ -9,15 +9,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaCartArrowDown } from "react-icons/fa";
+import { Departments } from "./DrawerExample";
 import { BiMenu } from "react-icons/bi";
 import React, { useRef } from "react";
 import DrawerExample from "./DrawerExample";
+
+import Menucompo from "./Menucompo";
 
 const Navbar = () => {
   const btnRef = useRef();
   return (
     <div>
-      <Box border={"2px solid red"} w={"100%"}>
+      <Box  w={"100%"}>
         <Box h={"25%"}>
           <Flex h={"100%"}>
             <Box
@@ -53,7 +56,7 @@ const Navbar = () => {
           <Flex justify="space-between">
             <Box ml="4">
               <Flex justify="space-between">
-                <Box p="2" display={{ base: "flex", lg: "none" }}>
+                <Box pr='2' display={{ base: "flex", lg: "none" }}>
                   <DrawerExample btnRef={btnRef} />
                 </Box>
                 <Box p="1">
@@ -72,10 +75,17 @@ const Navbar = () => {
             <Input placeholder="Search" />
           </Box>
         </Box>
-        <Box>
-          
+        <Box display={{base:'none',lg:'block'}}>
+        <Flex justify='space-evenly' mt='5'>
+        {Departments.map(value=>
+        <Box key={value.title}>
+          <Menucompo value ={value} />
+        </Box>
+          )}
+        </Flex>
         </Box>
       </Box>
+      <Divider />
     </div>
   );
 };

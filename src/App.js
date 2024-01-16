@@ -9,11 +9,12 @@ import LoginPage from './pages/LoginPage';
 import CheckoutPage from './pages/CheckoutPage';
 import SingleProductPage from './pages/SingleProductPage';
 import Loading from './components/Loading';
-import { Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 function App() {
   return (
     <div className="App">
+      <Box fontFamily='rootfonts'>
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,6 +27,7 @@ function App() {
           <Route path="*" element={<Text fontSize={'xx-large'} textAlign={'center'} fontWeight={'900'} >404 Page Not Found</Text>} />
         </Routes>
       </Suspense>
+      </Box>
     </div>
   );
 }
