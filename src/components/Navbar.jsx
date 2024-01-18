@@ -15,6 +15,7 @@ import React, { useRef } from "react";
 import DrawerExample from "./DrawerExample";
 
 import Menucompo from "./Menucompo";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const btnRef = useRef();
@@ -60,16 +61,18 @@ const Navbar = () => {
                   <DrawerExample btnRef={btnRef} />
                 </Box>
                 <Box p="1">
-                  <Text>logo</Text>
+                 <Link to={'/'}> <Text>logo</Text></Link>
                 </Box>
               </Flex>
             </Box>
             <Box display={{ base: "none", lg: "block" }}>
               <Input placeholder="Search" />
             </Box>
+            <Link to={'/cartpage'}>
             <Box mr="10" w="4" h="4">
               <FaCartArrowDown size="200%" />
             </Box>
+            </Link>
           </Flex>
           <Box m="4" display={{ base: "block", lg: "none" }}>
             <Input placeholder="Search" />

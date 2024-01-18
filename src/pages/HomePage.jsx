@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import DrawerExample from "../components/DrawerExample";
 import Footer from "../components/Footer";
 import { Box, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -43,31 +44,37 @@ const Home = () => {
         />
       </Box>
       <Box  boxSizing="border-box"  my='15' mx="4" >
+      <Link to={'/product'}>
       <Image
           objectFit="cover"
           cursor='pointer'
           src="https://slimages.macysassets.com/is/image/MacysInc/C2301736_HP_group?fmt=webp&wid=1440"
           alt="Dan Abramov"
         />
+        </Link> 
       </Box>
       <Box 
         
         mx="4"
         my="10">
+         
         <Image
           objectFit="cover"
           src="https://slimages.macysassets.com/is/image/MacysInc/C9060385_102_1368157-1?fmt=webp&wid=1600"
           alt="Dan Abramov"
         />
+        
       </Box>
       <Box 
-         boxSizing="border-box" my='10' mx="4"> 
+         boxSizing="border-box" my='10' mx="4">
+          
         <Image
           objectFit="cover"
           cursor='pointer'
           src="https://slimages.macysassets.com/is/image/MacysInc/061021INTLHOMEPAGETEAMPLATEBANNER10301_1433052-1?fmt=webp&wid=1600"
           alt="Dan Abramov"
         />
+        
       </Box>
       </Box>
       <Footer />

@@ -102,7 +102,7 @@ const ProductList = () => {
         </Box>
         <SimpleGrid columns={[1, 2, 3]} spacing="20" mx="4" my="10">
           {productData?.map((value) => (
-            <Link>
+            <Link to={'/product/:id'}>
               <Box key={value.title} boxShadow="base" m="2" p="4">
                 <Image w="40" src={value.image} m="auto" />
                 <Text fontWeight="700">{value.title}</Text>
