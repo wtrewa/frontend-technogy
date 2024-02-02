@@ -2,6 +2,9 @@ import { Box, Button, Flex, Heading, Image, SimpleGrid, Text, useDisclosure } fr
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import DrawerExample3 from "./DrawerExample copy 3";
+import { useDispatch, useSelector } from "react-redux";
+import { getProduct } from "../Redux/Product/productAction";
+
 
 const Category = [
   {
@@ -24,17 +27,13 @@ const Category = [
 const ProductList = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnref = useRef();
-  const [productData, setProductData] = useState();
-
-  const fetchData = async () => {
-    const res = await fetch(`http://localhost:8080/products`);
-    const data = await res.json();
-    console.log(data);
-    setProductData(data);
-  };
+  
+  const dispatch = useDispatch()
+  const productData = useSelector(store=>store.productReducer.products)
+ console.log(productData)
   useEffect(() => {
-    fetchData();
-  }, []);
+    getProduct(dispatch)
+  },[])
   return (
     <div>
       <Box>
@@ -49,7 +48,7 @@ const ProductList = () => {
             m="auto"
           >
             {Category?.map((value) => (
-              <Link>
+              <Link >
                 <Box
                   borderRadius="4"
                   textAlign="center"
@@ -102,9 +101,9 @@ const ProductList = () => {
         </Box>
         <SimpleGrid columns={[1, 2, 3]} spacing="20" mx="4" my="10">
           {productData?.map((value) => (
-            <Link to={'/product/:id'}>
-              <Box key={value.title} boxShadow="base" m="2" p="4">
-                <Image w="40" src={value.image} m="auto" />
+            <Link to={`/product/${value.id}`} key={value.id}>
+              <Box key={value.title}  boxShadow="base" m="2" p="4" h={{base:'20%',md:"400px"}}>
+                <Image h={'250px'}   src={value.thumbnail} m="auto" />
                 <Text fontWeight="700">{value.title}</Text>
                 <Text>
                   Price:<Text as="mark">{value.price}</Text>

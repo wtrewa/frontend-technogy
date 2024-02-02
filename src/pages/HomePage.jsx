@@ -2,9 +2,9 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import DrawerExample from "../components/DrawerExample";
 import Footer from "../components/Footer";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-
+ const cards = new Array(10).fill(0)
 const Home = () => {
   return (
     <div>
@@ -43,14 +43,15 @@ const Home = () => {
           alt="Dan Abramov"
         />
       </Box>
-      <Box  boxSizing="border-box"  my='15' mx="4" >
-      <Link to={'/product'}>
+      <Box  boxSizing="border-box" pos={'relative'}  my='15' mx="4" >
+      <Link  to={'/product'}>
       <Image
           objectFit="cover"
           cursor='pointer'
           src="https://slimages.macysassets.com/is/image/MacysInc/C2301736_HP_group?fmt=webp&wid=1440"
           alt="Dan Abramov"
         />
+        
         </Link> 
       </Box>
       <Box 
@@ -74,7 +75,6 @@ const Home = () => {
           src="https://slimages.macysassets.com/is/image/MacysInc/061021INTLHOMEPAGETEAMPLATEBANNER10301_1433052-1?fmt=webp&wid=1600"
           alt="Dan Abramov"
         />
-        
       </Box>
       </Box>
       <Footer />

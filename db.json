@@ -1,104 +1,28 @@
-
-
-
-{"products": [
-  {
-   
-   "title": "Michael Kors\nMen's Classic Fit Luxury Wool Cashmere Blend Overcoats",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/1/optimized/24263581_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-   "price": "Sale INR 14,574.00",
-   "rating": 4
- },
- {
-   
-   "title": "adidas\nMen's Game & Go Camo Big Logo Training Fleece Hoodie",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 2,571.00",
-   "rating": 4
- },
- {
-   
-   "title": "Champion\nMen's Jersey Open-Bottom Pants",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/1/optimized/24263581_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-   "price": "Sale INR 1,542.00",
-   "rating": 4
- },
- {
-   
-   "title": "Kenneth Cole Reaction\nMen's Ready Flex Slim-Fit Suit",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 10,287.00",
-   "rating": 4
- },
- {
-   
-   "title": "Club Room\nMen's Solid Crew Neck Merino Wool Blend Sweater, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 2,571.00",
-   "rating": 4
- },
- {
-   
-   "title": "Sun + Stone\nMen's Garment-dyed Straight-Fit Morrison Tapered Cargo Pants, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 1,714.00",
-   "rating": 5
- },
- {
-   
-   "title": "Club Room\nMen's Regular-Fit Plaid Flannel Shirt, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 2,571.00",
-   "rating": 2
- },
- {
-   
-   "title": "Club Room\nMen's Solid V-Neck Merino Wool Blend Sweater, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/3/optimized/14412333_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-   "price": "Sale INR 2,521.00",
-   "rating": 4.5
- },
- {
-   
-   "title": "Alfani\nMen's Andrew Plain Toe Derbys, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 2,551.00",
-   "rating": 4
- },
- {
-   
-   "title": "Alfani\nMen's Grayson Lace-Up Sneakers, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "- 3,061.00",
-   "rating": 5
- },
- {
-   
-   "title": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Sale INR 1,714.00",
-   "rating": 3
- },
- {
-   
-   "title": "I.N.C. International Concepts\nMen's Jared Regular-Fit Sateen Shirt, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/9/optimized/26317199_fpx.tif?op_sharpen=1&wid=1200&fit=fit,1&$filtersm$&fmt=webp",
-   "price": "Now INR 2,829.00",
-   "rating": 1
- },
- {
-   
-   "title": "Club Room\nMen's Solid Turtleneck Shirt, Created for Macy's",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/1/optimized/24263581_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-   "price": "Sale INR 1,286.00",
-   "rating": 5
- },
- {
-   
-   "title": "Reebok\nMen's Regular-Fit Training Performance Joggers",
-   "image": "https://slimages.macysassets.com/is/image/MCY/products/1/optimized/24263581_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1&fmt=webp",
-   "price": "Sale INR 66,333.00",
-   "rating": 5
- }
- 
- 
-]}
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Saurabh",
+      "lastName": "Pandey",
+      "email": "psaurabh574@gmail.com",
+      "password": "masai",
+      "cartProduct": []
+    },
+    {
+      "firstName": "Saurabh",
+      "lastName": "Pandey",
+      "email": "psaurabh574@gmail.com",
+      "password": "masai",
+      "cartProduct": [],
+      "id": 2
+    },
+    {
+      "firstName": "Saurabh",
+      "lastName": "Pandey",
+      "email": "psaurabh574@gmail.com",
+      "password": "masai",
+      "cartProduct": [],
+      "id": 3
+    }
+  ]
+}

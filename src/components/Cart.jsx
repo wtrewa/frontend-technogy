@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import TransitionExample from "../components/TransitonCart";
+import TransitionExample from "./TransitonCart";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
