@@ -13,8 +13,12 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { authSingup } from '../Redux/Auth/authAction'
 
 export default function Login() {
+
   return (
     <Flex
       minH={'100vh'}

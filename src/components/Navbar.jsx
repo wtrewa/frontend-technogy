@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Divider,
   Flex,
@@ -16,12 +17,16 @@ import DrawerExample from "./DrawerExample";
 
 import Menucompo from "./Menucompo";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const user = useSelector(store=>store.authReducer.User ||0)
+
+  console.log(user.cartProduct?.length)
   const btnRef = useRef();
   return (
     <div>
-      <Box  w={"100%"}>
+      <Box w={"100%"}>
         <Box h={"25%"}>
           <Flex h={"100%"}>
             <Box
@@ -30,7 +35,9 @@ const Navbar = () => {
               ml="5"
               textAlign={{ base: "center", lg: "left" }}
             >
-              <Box fontSize={{base:'small'}} fontFamily='rootfonts'>We now ship to 200 locations worldwide Details</Box>
+              <Box fontSize={{ base: "small" }} fontFamily="rootfonts">
+                We now ship to 200 locations worldwide Details
+              </Box>
             </Box>
             <Spacer />
             <Box
@@ -57,35 +64,41 @@ const Navbar = () => {
           <Flex justify="space-between">
             <Box ml="4">
               <Flex justify="space-between">
-                <Box pr='2' display={{ base: "flex", lg: "none" }}>
+                <Box pr="2" display={{ base: "flex", lg: "none" }}>
                   <DrawerExample btnRef={btnRef} />
                 </Box>
                 <Box p="1">
-                 <Link to={'/'}> <Text>logo</Text></Link>
+                  <Link to={"/"}>
+                    {" "}
+                    <Text>logo</Text>
+                  </Link>
                 </Box>
               </Flex>
             </Box>
             <Box display={{ base: "none", lg: "block" }}>
               <Input placeholder="Search" />
             </Box>
-            <Link to={'/cartpage'}>
-            <Box mr="10" w="4" h="4">
-              <FaCartArrowDown size="200%" />
-            </Box>
+            <Link to={"/cartpage"}>
+              <Box mr="10" w="4" h="4">
+                <FaCartArrowDown size="200%" />
+                <Badge variant="solid" borderRadius='50%' p='1' pos='relative' bottom='47px' right='-5' colorScheme="yellow">
+                  {user.cartProduct?.length||0}
+                </Badge>
+              </Box>
             </Link>
           </Flex>
           <Box m="4" display={{ base: "block", lg: "none" }}>
             <Input placeholder="Search" />
           </Box>
         </Box>
-        <Box display={{base:'none',lg:'block'}}>
-        <Flex justify='space-evenly' mt='5'>
-        {Departments.map(value=>
-        <Box key={value.title}>
-          <Menucompo value ={value} />
-        </Box>
-          )}
-        </Flex>
+        <Box display={{ base: "none", lg: "block" }}>
+          <Flex justify="space-evenly" mt="5">
+            {Departments.map((value) => (
+              <Box key={value.title}>
+                <Menucompo value={value} />
+              </Box>
+            ))}
+          </Flex>
         </Box>
       </Box>
       <Divider />

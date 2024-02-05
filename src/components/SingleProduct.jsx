@@ -9,26 +9,74 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiZoomIn } from "react-icons/bi";
 import ZoomableImage from "./ZoomAble";
 import TransitionExample from "./TransitonCart";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authSingup, cartUpdate } from "../Redux/Auth/authAction";
+import { getProductSingle } from "../Redux/Product/productAction";
 
 const SingleProduct = () => {
+   let imageGallary
+ const [User,setUser] = useState({})
+ let { id } = useParams();
+ const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const product = useSelector((store) => store.productReducer.products);
+  const product = useSelector((store) => store.productReducer.product);
+  const UserSelection = useSelector((store)=>store.authReducer.User)
+  useEffect(()=>{
+    dispatch(getProductSingle(id))
+    
+    UserSelection && setUser(UserSelection);
+   },[])
+  console.log(User)
+  console.log(id)
+  
+console.log(product)
+  imageGallary = product.images
+  
 
-
-  const clickHandler = ()=>{
-    onOpen();
+  const clickHandler = (e,product,User)=>{
+    e.stopPropagation()
+    let flag = true;
+    
+    const newObj = {}
+    const {cartProduct} = User
+    
+    console.log(cartProduct)
+    if(cartProduct.length===0){
+      cartProduct.push(product)
+    }
+    else{
+      console.log(cartProduct)
+    const index = cartProduct.findIndex((el)=>el.id===product.id)
+     if(index===-1){
+         cartProduct.push(product)
+     }
+     else{
+        alert("this product is already added to cart");
+        onOpen()
+        flag = false;
+     }
+      
+    }
+    
+    if(flag){
+      newObj.cartProduct = cartProduct
+      console.log(newObj)
+      dispatch(cartUpdate(newObj)).then((res)=>{
+      
+        if(res.statusText==="OK"){
+          onOpen();
+        }
+      })
+    }
+   
+    
     
   }
-  let { id } = useParams();
-  const singlePro = product?.filter((el) => el.id == id);
-  let imageGallary = singlePro[0].images;
-  console.log(singlePro, imageGallary);
   return (
     <div>
       <Box mx="4" my="10">
@@ -41,12 +89,12 @@ const SingleProduct = () => {
             ))}
           </Box>
           <Box mr="20" pr="20" pos="sticky" top="0" h="fit-content">
-            <Text as="p">{singlePro[0].brand}</Text>
+            <Text as="p">{product.brand}</Text>
             <Heading>
-            {singlePro[0].title}
+            {product.title}
             </Heading>
             <Text as="p">
-              <StarIcon /> {singlePro[0].rating} (5)
+              <StarIcon /> {product.rating} (5)
             </Text>
             <Text as="p" pt="2" fontWeight="600">
               LIMITED-TIME SPECIAL
@@ -54,12 +102,12 @@ const SingleProduct = () => {
             <Text>
               <Text color="orange">
                 INR
-                {singlePro[0].price -
+                {product.price -
                   Math.floor(
-                    (singlePro[0].price * singlePro[0].discountPercentage) / 100
+                    (product.price * product.discountPercentage) / 100
                   )}
               </Text>
-              <Text as="s">INR{singlePro[0].price}</Text>
+              <Text as="s">INR{product.price}</Text>
               <Text as="u" p="2">
                 Details
               </Text>
@@ -114,7 +162,7 @@ const SingleProduct = () => {
             </Box>
             <Box>
               <Button
-                onClick={clickHandler,onOpen}
+                onClick={(e)=>{clickHandler(e,product,User)}}
                 
                 p="6"
                 color="white"

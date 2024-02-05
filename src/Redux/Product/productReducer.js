@@ -1,4 +1,5 @@
 import {
+  GET_PRODUCTSINGLE_SUCCESS,
   GET_PRODUCT_SUCCESS,
   PRODUCT_FAILURE,
   PRODUCT_REQUEST,
@@ -8,6 +9,7 @@ const initstate = {
   isLoading: false,
   isError: false,
   products: [],
+  product:{}
 };
 export const reducer = (state=initstate,{type,payload}) => {
   switch (type) {
@@ -15,6 +17,8 @@ export const reducer = (state=initstate,{type,payload}) => {
       return {...state,isLoading:true};
     case GET_PRODUCT_SUCCESS:
       return {...state,isLoading:false,products:payload};
+    case GET_PRODUCTSINGLE_SUCCESS:
+      return {...state,isLoading:false,product: payload}
     case PRODUCT_FAILURE:
       return {...state,isError:true};
 
