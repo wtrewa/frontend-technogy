@@ -19,13 +19,12 @@ import {
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useDispatch } from 'react-redux'
-import { authSingup } from '../Redux/Auth/authAction'
+import { singupAction } from '../Redux/Auth/authAction'
 const initState = {
   firstName :"",
   lastName:"",
   email:"",
   password:"",
-  cartProduct:[]
 }
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
@@ -44,8 +43,9 @@ const dispatch = useDispatch()
     setState(newState)
     
   }
+  console.log(state)
   const handleSubmit = ()=>{
-      dispatch(authSingup(state))
+      dispatch(singupAction(state))
   }
 console.log(state)
   return (

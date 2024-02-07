@@ -1,3 +1,12 @@
+// import 
+import React, { memo, useEffect, useMemo, useState } from "react";
+import { BiZoomIn } from "react-icons/bi";
+import ZoomableImage from "./ZoomAble";
+import TransitionExample from "./TransitonCart";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authSingup, cartUpdate } from "../Redux/Auth/authAction";
+import { getProductSingle } from "../Redux/Product/productAction";
 import { StarIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -9,74 +18,53 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { BiZoomIn } from "react-icons/bi";
-import ZoomableImage from "./ZoomAble";
-import TransitionExample from "./TransitonCart";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { authSingup, cartUpdate } from "../Redux/Auth/authAction";
-import { getProductSingle } from "../Redux/Product/productAction";
 
-const SingleProduct = () => {
-   let imageGallary
- const [User,setUser] = useState({})
- let { id } = useParams();
- const dispatch = useDispatch()
+
+// import end
+
+// single component start ------>
+const SingleProduct = memo(() => {
+  let imageGallary;
+  const [User, setUser] = useState({});
+  let { id } = useParams();
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const product = useSelector((store) => store.productReducer.product);
-  const UserSelection = useSelector((store)=>store.authReducer.User)
-  useEffect(()=>{
-    dispatch(getProductSingle(id))
-    
-    UserSelection && setUser(UserSelection);
-   },[])
-  console.log(User)
-  console.log(id)
-  
-console.log(product)
-  imageGallary = product.images
-  
+  const UserSelection = useSelector((store) => store.authReducer.User);
 
-  const clickHandler = (e,product,User)=>{
-    e.stopPropagation()
+  // use effect 
+
+  useEffect(() => {
+    dispatch(getProductSingle(id));
+    UserSelection && setUser(UserSelection);
+  }, []);
+
+  imageGallary = product.images;
+
+  // cart product adding process
+
+  const clickHandler = (e, product, User) => {
+    e.stopPropagation();
     let flag = true;
-    
-    const newObj = {}
-    const {cartProduct} = User
-    
-    console.log(cartProduct)
-    if(cartProduct.length===0){
-      cartProduct.push(product)
+    console.log(product, User);
+    const { cartProducts } = User;
+    let index = cartProducts.findIndex((el) => el.id === product.id);
+    if (index !== -1) {
+      alert("this product has already added");
+      flag = false;
+      onOpen()
     }
-    else{
-      console.log(cartProduct)
-    const index = cartProduct.findIndex((el)=>el.id===product.id)
-     if(index===-1){
-         cartProduct.push(product)
-     }
-     else{
-        alert("this product is already added to cart");
-        onOpen()
-        flag = false;
-     }
-      
-    }
-    
     if(flag){
-      newObj.cartProduct = cartProduct
-      console.log(newObj)
-      dispatch(cartUpdate(newObj)).then((res)=>{
-      
-        if(res.statusText==="OK"){
+      dispatch(cartUpdate(User._id,product)).then((res)=>{
+        console.log(res);
+        if(res.status===200){
           onOpen();
         }
       })
-    }
-   
-    
-    
+  };
+
   }
+
   return (
     <div>
       <Box mx="4" my="10">
@@ -90,9 +78,7 @@ console.log(product)
           </Box>
           <Box mr="20" pr="20" pos="sticky" top="0" h="fit-content">
             <Text as="p">{product.brand}</Text>
-            <Heading>
-            {product.title}
-            </Heading>
+            <Heading>{product.title}</Heading>
             <Text as="p">
               <StarIcon /> {product.rating} (5)
             </Text>
@@ -162,8 +148,9 @@ console.log(product)
             </Box>
             <Box>
               <Button
-                onClick={(e)=>{clickHandler(e,product,User)}}
-                
+                onClick={(e) => {
+                  clickHandler(e, product, User);
+                }}
                 p="6"
                 color="white"
                 bg="black"
@@ -181,6 +168,10 @@ console.log(product)
       </Box>
     </div>
   );
-};
 
-export default SingleProduct;
+})
+
+export default SingleProduct
+
+
+

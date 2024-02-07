@@ -15,10 +15,26 @@ import {
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { authSingup } from '../Redux/Auth/authAction'
-
+import {  loginAction } from '../Redux/Auth/authAction'
+import { useState } from 'react'
+const init = {
+  email:'',
+  password:''
+}
 export default function Login() {
+  const dispatch = useDispatch()
+const [state,setState] = useState(init)
+  const handleChange = (e)=>{
+   const {name,value} = e.target;
+      let newState ={...state,[name]:value};
+      setState((pre)=>newState)
+  }
 
+  const onSubmit = (e)=>{
+     dispatch(loginAction(state))
+  }
+
+  console.log(state)
   return (
     <Flex
       minH={'100vh'}
@@ -37,11 +53,11 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" name='email'   onChange={handleChange} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" name='password' onChange={handleChange} />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -56,7 +72,7 @@ export default function Login() {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }} onClick={onSubmit}>
                 Sign in
               </Button>
             </Stack>

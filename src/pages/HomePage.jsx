@@ -5,13 +5,12 @@ import Footer from "../components/Footer";
 import { Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authSingup } from "../Redux/Auth/authAction";
  const cards = new Array(10).fill(0)
 const Home = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    authSingup(dispatch)
+    
    },[])
   
  

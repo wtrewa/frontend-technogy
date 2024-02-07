@@ -20,9 +20,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const user = useSelector(store=>store.authReducer.User ||0)
-
-  console.log(user.cartProduct?.length)
+  const user = useSelector(store=>store.authReducer.User )
+  console.log(user)
+  console.log(user.cartProducts?.length)
   const btnRef = useRef();
   return (
     <div>
@@ -82,7 +82,7 @@ const Navbar = () => {
               <Box mr="10" w="4" h="4">
                 <FaCartArrowDown size="200%" />
                 <Badge variant="solid" borderRadius='50%' p='1' pos='relative' bottom='47px' right='-5' colorScheme="yellow">
-                  {user.cartProduct?.length||0}
+                  {user.cartProducts?.length||0}
                 </Badge>
               </Box>
             </Link>

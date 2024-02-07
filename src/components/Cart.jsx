@@ -25,15 +25,22 @@ const Cart = () => {
   
   const user = useSelector((store) => store.authReducer.User );
   console.log(user);
-  const {cartProduct} = user;
+  const {cartProducts} = user;
+  
+ const totalPrice= async()=>{
   let to = 0
-   cartProduct.forEach(e => { 
-     to+=e.price
-
-   });
+  cartProducts?.forEach(e => { 
+    to+=e.price
+  });
+  return to
+ }
+  
 
    useEffect(()=>{
-    setTotal(to)
+    let value = totalPrice().then(res=>{
+        setTotal(res)
+    }
+      )
    },[])
    console.log(total)
   return (
@@ -45,7 +52,7 @@ const Cart = () => {
             <Heading p="4">Your Bag</Heading>
             <Divider />
             {
-              cartProduct?.map(el=>
+              cartProducts?.map(el=>
                 <Box key={el.id} m="auto">
               <Flex justify="space-between" m="4">
                 <Box w="15%">

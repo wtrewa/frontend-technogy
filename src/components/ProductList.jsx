@@ -48,7 +48,7 @@ const ProductList = () => {
             m="auto"
           >
             {Category?.map((value) => (
-              <Link >
+              <Link key={value.title} >
                 <Box
                   borderRadius="4"
                   textAlign="center"
