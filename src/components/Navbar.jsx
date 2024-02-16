@@ -12,18 +12,50 @@ import {
 import { FaCartArrowDown } from "react-icons/fa";
 import { Departments } from "./DrawerExample";
 import { BiMenu } from "react-icons/bi";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DrawerExample from "./DrawerExample";
 
 import Menucompo from "./Menucompo";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductSearch } from "../Redux/Product/productAction";
 
 const Navbar = () => {
-  const user = useSelector(store=>store.authReducer.User )
-  console.log(user)
-  console.log(user.cartProducts?.length)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState();
+  const dispatch = useDispatch();
+  const ref = useRef();
+
+  const user = useSelector((store) => store.authReducer.User);
+  console.log(user);
+  console.log(user.cartProducts?.length);
   const btnRef = useRef();
+
+  
+   const paramsObj = {
+    params:{
+      
+    }
+   }
+    
+   if(search){
+    (paramsObj.params.q = search )
+   } 
+
+  useEffect(() => {
+    
+
+    if(ref.current){
+      clearTimeout(ref.current)
+    }
+    console.log(ref.current)
+    ref.current = setTimeout(() => {
+      dispatch(getProductSearch(paramsObj));
+      console.log(ref.current)
+    }, 1000);
+    console.log(ref.current);
+  }, [search]);
+
   return (
     <div>
       <Box w={"100%"}>
@@ -76,13 +108,21 @@ const Navbar = () => {
               </Flex>
             </Box>
             <Box display={{ base: "none", lg: "block" }}>
-              <Input placeholder="Search" />
+              <Input placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} />
             </Box>
             <Link to={"/cartpage"}>
               <Box mr="10" w="4" h="4">
                 <FaCartArrowDown size="200%" />
-                <Badge variant="solid" borderRadius='50%' p='1' pos='relative' bottom='47px' right='-5' colorScheme="yellow">
-                  {user.cartProducts?.length||0}
+                <Badge
+                  variant="solid"
+                  borderRadius="50%"
+                  p="1"
+                  pos="relative"
+                  bottom="47px"
+                  right="-5"
+                  colorScheme="yellow"
+                >
+                  {user.cartProducts?.length || 0}
                 </Badge>
               </Box>
             </Link>

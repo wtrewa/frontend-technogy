@@ -8,8 +8,20 @@ import {
 
 export const getProduct = async (dispatch) => {
   try {
+    
     dispatch({ type: PRODUCT_REQUEST });
-    const resdata = await axios.get("https://dummyjson.com/products")
+    const resdata = await axios.get(`https://dummyjson.com/products`)
+      console.log(resdata)
+      dispatch({type:GET_PRODUCT_SUCCESS,payload:resdata.data.products})
+  } catch (error) {
+    dispatch({ type: PRODUCT_FAILURE });
+  }
+};
+export const getProductSearch =(obj)=> async (dispatch) => {
+  try {
+    console.log(obj)
+    dispatch({ type: PRODUCT_REQUEST });
+    const resdata = await axios.get(`https://dummyjson.com/products/search`,obj)
       console.log(resdata)
       dispatch({type:GET_PRODUCT_SUCCESS,payload:resdata.data.products})
   } catch (error) {
