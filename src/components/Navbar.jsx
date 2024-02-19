@@ -24,7 +24,7 @@ const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState();
   const dispatch = useDispatch();
-  const ref = useRef()
+  
 
   const user = useSelector((store) => store.authReducer.User);
   console.log(user);
