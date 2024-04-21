@@ -1,6 +1,7 @@
 import {
   Badge,
   Box,
+  Button,
   Divider,
   Flex,
   HStack,
@@ -19,6 +20,7 @@ import Menucompo from "./Menucompo";
 import { Link, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductSearch } from "../Redux/Product/productAction";
+import { Search2Icon, SearchIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,28 +36,15 @@ const Navbar = () => {
   
    const paramsObj = {
     params:{
-      
+      q:search && search
     }
    }
     
-   if(search){
-    (paramsObj.params.q = search )
-   } 
+  const clickHandler = (e)=>{
+    dispatch(getProductSearch(paramsObj));
+  }
 
-  useEffect(() => {
-    
-
-    if(ref.current){
-      clearTimeout(ref.current)
-    }
-    console.log(ref.current)
-    ref.current = setTimeout(() => {
-      dispatch(getProductSearch(paramsObj));
-      console.log(ref.current)
-    }, 1000);
-    console.log(ref.current);
-  }, [search]);
-
+  
   return (
     <div>
       <Box w={"100%"}>
@@ -107,8 +96,10 @@ const Navbar = () => {
                 </Box>
               </Flex>
             </Box>
-            <Box display={{ base: "none", lg: "block" }}>
-              <Input placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} />
+            <Box border={'1px solid gray'} display={{ base: "none", lg: "flex" }}>
+              <Input placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)} border={'none'} focusBorderColor="transparent" _hover={{border:'none',bg:
+            "transparent"}} />
+              <Button textDecoration={'none'} _hover={{bg:'transparent'}} bg={'transparent'} onClick={clickHandler}><Search2Icon bgSize={5} m={'2'}/></Button>
             </Box>
             <Link to={"/cartpage"}>
               <Box mr="10" w="4" h="4">
